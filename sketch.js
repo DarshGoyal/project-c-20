@@ -21,11 +21,13 @@ function setup(){
     cat.addImage(cat1);
     cat.scale = 0.2;
     cat.debug = true;
+    cat.setCollider("circle",0,0,140);
 
     mouse = createSprite(200,600,20,20);
     mouse.addImage(mouse1);
     mouse.scale = 0.15;
     mouse.debug = true;
+    mouse.setCollider("circle",0,0,140);
     
 }
 
@@ -33,19 +35,20 @@ function draw() {
 
     background(255);
  
-    if(cat.x - mouse.x < cat.width/2 + mouse.width/2 &&
-      mouse.x - cat.x < cat.width/2 + mouse.width/2 ){
+    if(cat.x - mouse.x < cat.width/2 - mouse.width/2 &&
+      mouse.x - cat.x < cat.width/2 - mouse.width/2 ){
         cat.velocityX = 0;
-        cat.addImage(cat3);
-        mouse.addImage(mouse3);
+        cat.addImage("catruning",cat3);
+        mouse.addImage("teasing",mouse3);
+        mouse.x  = 170;
     }
       
-    if(cat.y - mouse.y < cat.height/2 + mouse.height/2 &&
-      mouse.y - cat.y < cat.height/2 + mouse.height/2){
+    /*if(cat.y - mouse.y < cat.height/2 - mouse.height/2 &&
+      mouse.y - cat.y < cat.height/2 - mouse.height/2){
         cat.velocityX = 0;
         cat.addImage(cat3);
         mouse.addImage(mouse3);
-    }
+    }*/
     
       
     //Write condition here to evalute if tom and jerry collide
@@ -56,7 +59,7 @@ function draw() {
 
 function keyPressed(){
     if(keyCode === LEFT_ARROW){
-        cat.velocityX =-5;
+        cat.velocityX =-10;
         cat.addAnimation("catruning",cat2);
         
         cat.changeAnimation("catruning");
